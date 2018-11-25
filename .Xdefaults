@@ -1,0 +1,110 @@
+! URxvt
+
+URxvt*geometry:                135x25
+
+*font:xft:Fantasque Sans Mono:pixelsize=15:antialias=true:hinting=true 
+# xft:Liberation Mono:pixelsize=14:antialias=true:hinting=false
+URxvt*font: xft:Fantasque Sans Mono:pixelsize=15:antialias=true:hinting=true
+!URxvt*boldFont: xft:Inconsolata:bold:pixelsize=12:antialias=false:hinting=true
+*boldFont: xft:Liberation Mono:bold:pixelsize=14:antialias=true:hinting=false
+URxvt*borderless: 1
+URxvt*scrollBar:            false
+URxvt*saveLines:  2000
+!URxvt.transparent:      true
+URxvt*.shading: 0
+URxvt*termName: rxvt-unicode
+URxvt*imLocale:en_GB.utf8
+
+! Meta modifier for keybindings
+!URxvt.modifier: super
+
+!! perl extensions
+URxvt.perl-ext:             default,url-select,clipboard
+
+! url-select (part of URxvt-perls package)
+!URxvt.keysym.M-u:           perl:url-select:select_next
+!URxvt.url-select.autocopy:  true
+!URxvt.url-select.button:    2
+!URxvt.url-select.launcher:  firefox
+!URxvt.url-select.underline: true
+
+
+URxvt.internalBorder:  10
+
+! Nastavuje kopirovani
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
+
+! disable the stupid ctrl+shift 'feature'
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+
+URxvt*depth: 32
+URxvt*background: rgba:3333/3333/3333/ffff
+
+bat_warn.geometry:                3x3
+bat_warn.cursorColor: rgba:0000/0000/0000/0000
+bat_warn.font: xft:inconsolata sans mono:bold:pixelsize=92:antialias=true:hinting=true
+bat_warn*background: rgba:1111/1111/1111/0000
+! floating.background: rgba:2222/2222/2222/d000
+! wifi.background: rgba:4444/4444/4444/d000
+
+
+!URxvt color scheme:
+
+!URxvt*background: #2B2B2B
+URxvt*foreground: #DEDEDE
+
+URxvt*colorUL: #86a2b0
+
+! black
+*color0  : #2E3436
+*color8  : #555753
+! red
+*color1  : #CC0000
+*color9  : #EF2929
+! green
+*color2  : #4E9A06
+*color10 : #8AE234
+! yellow
+*color3  : #C4A000
+*color11 : #FCE94F
+! blue
+*color4  : #3465A4
+*color12 : #729FCF
+! magenta
+*color5  : #75507B
+*color13 : #AD7FA8
+! cyan
+*color6  : #06989A
+*color14 : #34E2E2
+! white
+*color7  : #D3D7CF
+*color15 : #EEEEEC
+
+
+! black
+URxvt*color0  : #2E3436
+URxvt*color8  : #555753
+! red
+URxvt*color1  : #CC0000
+URxvt*color9  : #EF2929
+! green
+URxvt*color2  : #4E9A06
+URxvt*color10 : #8AE234
+! yellow
+URxvt*color3  : #C4A000
+URxvt*color11 : #FCE94F
+! blue
+URxvt*color4  : #3465A4
+URxvt*color12 : #729FCF
+! magenta
+URxvt*color5  : #75507B
+URxvt*color13 : #AD7FA8
+! cyan
+URxvt*color6  : #06989A
+URxvt*color14 : #34E2E2
+! white
+URxvt*color7  : #D3D7CF
+URxvt*color15 : #EEEEEC

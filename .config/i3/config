@@ -1,0 +1,341 @@
+# i3 config file (v4)
+# M.M.Radoja
+
+# Global settings {{{
+#############################
+# Mod Key {{{
+    # set mod key to be widows key
+    set $mod Mod4
+    # use Mouse+$mod to drag floating windows to their wanted position
+    floating_modifier $mod
+#}}}
+ # Layout Conrols{{{
+    # change focus
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # move focused window
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+    # resize focused window
+    bindsym $mod+Control+Left        resize shrink width 10 px or 10 ppt
+    bindsym $mod+Control+Down        resize grow height 10 px or 10 ppt
+    bindsym $mod+Control+Up          resize shrink height 10 px or 10 ppt
+    bindsym $mod+Control+Right       resize grow width 10 px or 10 ppt
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+#}}}
+# System controls {{{
+#############################
+# Power Management {{{
+
+
+bindsym $mod+Escape     exec "systemctl suspend"
+
+#}}}
+# volume controls {{{
+bindsym Control+Mod1+Up exec "amixer -c 1 sset 'Master' 3%+"
+bindsym Control+Mod1+Down exec "amixer -c 1 sset 'Master' 3%-"
+
+#}}}
+#}}}
+# Styles {{{
+
+default_border pixel 0
+default_floating_border pixel 0
+hide_edge_borders smart
+
+for_window [class="^.*"] border pixel 0
+gaps inner 26
+gaps outer 6
+# smart_gaps on
+# smart_borders on
+#}}}
+# Session {{{
+
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session){{{
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"/*}}}*/
+
+#}}}
+
+# start a terminal {{{
+bindsym $mod+Return exec terminator
+for_window [class="^Terminator$" ] floating disable;
+
+# }}}
+# {{{ start a floating terminal
+for_window [class="URxvt" instance="floating"] floating enable;
+for_window [class="URxvt" instance="floating"] move absolute position 0 px 22 px ;
+bindsym $mod+Shift+Return  exec "urxvt -name floating" 
+#}}}
+# Start ranger {{{
+bindsym $mod+R exec "urxvt -name floating -e sh -c ranger "
+# }}}
+
+# }}}
+
+# Workspces {{{
+#############################
+
+# Workspace 1
+# {{{
+set $ws1 "1  "
+bindsym $mod+1 workspace $ws1
+bindsym $mod+Shift+1 move container to workspace $ws1
+# }}}
+# Workspace 2
+# {{{
+set $ws2 "2  "
+bindsym $mod+2 workspace $ws2
+bindsym $mod+Shift+2 move container to workspace $ws2
+# }}}
+# Workspace 3
+# {{{
+set $ws3 "3  "
+bindsym $mod+3 workspace $ws3
+bindsym $mod+Shift+3 move container to workspace $ws3
+# }}}
+# Workspace 4
+# {{{
+set $ws4 "4  "
+bindsym $mod+4 workspace $ws4
+bindsym $mod+Shift+4 move container to workspace $ws4
+# }}}
+
+# Workspace 5
+# Firefox {{{
+set $firefox "5  "
+bindsym $mod+5 workspace $firefox
+bindsym $mod+Shift+5 move container to workspace $firefox
+workspace $firefox gaps inner 50
+workspace $firefox gaps outer 70
+
+assign [class="^Firefox$"] $firefox 
+for_window [class="^Firefox$"] gaps outer 40 px;
+#  change to workspace, launch of not already, and focus
+bindsym $mod+g\
+   workspace $firefox;\
+   [class="Firefox"] focus;\
+   exec [ $(ps h -C firefox | wc -l) = 0 ]&&/usr/bin/firefox;
+# }}}
+# Workspace 6
+# Tor {{{
+set $tor "6  "
+bindsym $mod+6 workspace $tor
+bindsym $mod+Shift+6 move container to workspace $tor
+
+# {{{ tor browser
+assign [class="^Tor Browser$"] $tor
+bindsym $mod+t\
+   workspace $tor;\
+   [class="Tor Browser"] focus;\
+   exec [ $(ps h -C tor | wc -l) = 0 ]&&/usr/bin/tor-browser
+# }}}
+
+
+# }}}
+
+# Workspace 7
+# Transmission {{{
+set $transmission "7  "
+bindsym $mod+7 workspace $transmission
+bindsym $mod+Shift+7 move container to workspace $transmission
+# }}}
+
+# Workspace 8
+# vlc  {{{
+set $vlc "8  "
+bindsym $mod+8 workspace $vlc
+bindsym $mod+Shift+8 move container to workspace $vlc
+# Start vlc {{{
+bindsym $mod+c workspace $vlc exec "urxvt -name floating -e sh -c 'ranger /home/media'"
+# }}}
+# }}}
+ 
+# Workspace 9 
+# music{{{
+set $music "9  "
+bindsym $mod+9 workspace $music
+bindsym $mod+Shift+9 move container to workspace $music
+# {{{ cmus
+for_window [class="URxvt" instance="cmus"] $music
+bindsym $mod+m \
+   workspace $music;\
+   [class="URxvt" title="cmus"] focus;\
+   exec [ $(ps h -C cmus | wc -l) = 0 ]&&/usr/bin/urxvt -name cums -e cmus ;\
+# }}}
+# {{{ youtube browser
+for_window [class="Terminator" instance="mpsyt"] $music
+bindsym $mod+n\
+   workspace $music;\
+   [class="URxvt" title="mpsyt"] focus;\
+   exec [ $(ps h -C mpsyt | wc -l) = 0 ]&&/usr/bin/terminator -T mpsyt -x /home/matthew/.local/bin/mpsyt 
+# }}}
+# }}}
+
+# Workspace 10 {{{
+set $ws10 "0  "
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Shift+0 move container to workspace $ws10
+# }}}
+
+# skip between tabs
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+#}}}
+
+
+# Applications {{{
+#############################################
+# {{{ start topbar
+for_window [class="topbar" instance="topbar"] floating enable;
+#for_window [class="URxvt" instance="topbar"] floating enable resize set 600 px 100 px;
+for_window [class="URxvt" instance="topbar"] move absolute position 660 px 32 px ;
+bindsym $mod+Shift+T  exec /home/matthew/.i3/topbar 
+# }}}
+# {{{ battery pop up
+for_window [class="URxvt" instance="battery"] floating enable resize set 200 px 100 px;
+for_window [class="URxvt" instance="battery"] move absolute position 1720 px 22 px ;
+for_window [class="URxvt" instance="battery"] focus;
+# }}}
+# {{{ wifi pop up
+for_window [class="URxvt" instance="wifi"] floating enable resize set 300 px 200 px;
+for_window [class="URxvt" instance="wifi"] move absolute position 1620 px 22 px ;
+for_window [class="URxvt" instance="wifi"] focus;
+# }}}
+# {{{ battery warning pop up
+for_window [class="URxvt" instance="bat_warn"] floating enable;
+# }}}
+ # {{{ ping test
+for_window [class="URxvt" instance="ping"] floating enable resize set 600 px 180 px;
+for_window [class="URxvt" instance="ping"] move absolute position 1320 px 24 px ;
+for_window [class="URxvt" instance="ping"] focus;
+bindsym $mod+b  exec "urxvt -name ping -title ping -e zsh -c /home/matthew/.config/i3blocks_cp/wifi/ping.popup"
+# }}}
+ # {{{ application launcher
+bindsym $mod+d exec dmenu_run
+# }}}
+ # {{{ pavucontrol
+bindsym $mod+p exec pavucontrol
+# }}}
+ # {{{ cmus controls
+bindsym Control+Mod1+space exec "cmus-remote -u"
+# }}}
+ # {{{ transmission
+assign [class="^Transmission-gtk$"] $transmission
+bindsym $mod+y workspace $transmission; exec [ $(ps h -C transmission-gt | wc -l) = 0 ]&&/usr/bin/transmission-gtk
+# }}}
+ # {{{ task warrior
+for_window [class="URxvt" instance="task"] floating enable
+bindsym $mod+q exec "urxvt -name task -e zsh -c 'task;zsh'"
+# }}}
+ # {{{ Yad (popup for calendar)
+for_window [class="Yad"] floating enable
+# }}}
+ #############################################
+ # }}}
+# Bar {{{
+#############################
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# font Liberation Mono bold 18
+
+
+#       bar {
+#       workspace_buttons n 
+#           font inconsolata: M+ 1m, FontAwesome, Ionicons, 12
+#           position top 
+#           height 28
+#           colors {
+#               background          #00000030
+#               statusline          #ffffff
+#               separator           #00000030
+#               focused_workspace   #00000030   #e16d0ea5   #ffffff
+#               active_workspace    #00000030   #00000030   #e16d0e
+#               inactive_workspace  #00000030   #00000037   #ffffff
+#               urgent_workspace    #00000030   #00000037   #e16d0e   
+#           }
+#           i3bar_command i3bar -t
+#           status_command i3blocks
+#           #status_command i3status --config ~/.config/i3status/config
+#       }
+bar {
+    font pango: M+ 1m, FontAwesome, Ionicons, 11
+    position top 
+    height 26
+    colors {
+        background          #333333
+        statusline          #ffffff
+        separator           #333333
+        #                   border      bg          fg
+        focused_workspace   #333333     #333333     #ffffff
+        active_workspace    #333333     #333333     #e16d0e
+        inactive_workspace  #333333     #333333     #aaaaaa
+        urgent_workspace    #00000030   #00000037   #e16d0e   
+    }
+	i3bar_command i3bar -t
+    status_command i3blocks
+    #status_command i3status --config ~/.config/i3status/config
+}
+
+#}}}
+# Startup {{{
+#############################
+
+# open session chooser
+# exec "~/.config/start_session"
+
+# Set background image
+exec "compton " #--config /home/matthew/.config/compton.conf"
+exec "feh --bg-fill /home/matthew/.config/bg.jpg"
+#exec "urxvt -name task -e zsh -c 'task;zsh'"
+#exec firefox
+exec transmission-gtk
+exec_always --no-startup-id $HOME/.config/polybar/test.sh
+# }}}
+# vim:foldmethod=marker:foldlevel=0

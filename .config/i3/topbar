@@ -1,0 +1,26 @@
+#!/bin/sh
+
+Xdialog --clear  --wmclass "topbar" --title "topbar" --timebox 25 40 40 \
+            --style "bg[NORMAL] = { 0.0 0.3 0.8}\
+                            fg[NORMAL] = { 1.0, 1.0, 1.0 }"\ 
+   --buttons-style default \
+           --msgbox "End of demo..." 0 0`
+
+#--menu "Choose one of the following options:" 25 4 4 \ 1 "Option 1" \ 2 "Option 2" \ 3 "Option 3" 
+
+
+style 'blue_background' {
+        bg[NORMAL] = { 0.0, 0.3, 0.8 }
+        fg[NORMAL] = { 1.0, 1.0, 1.0 }
+}
+
+widget '*' style 'blue_background'
+
+
+style 'blue_background' {
+         bg[NORMAL] = { 0.0, 0.3, 0.8 }
+         fg[NORMAL] = { 1.0, 1.0, 1.0 }
+}
+ 
+ widget '*' style 'blue_background'
+

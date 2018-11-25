@@ -1,0 +1,77 @@
+##zsh#aliases
+#   /  |/   |
+#  /        |
+# /  /|  /| |
+#/  / | / | |
+##M.M.Radoja#
+
+# opening and closing terminals {{{
+
+alias q=exit
+alias qq="i3-sensible-terminal&disown;exit" 
+
+
+#}}}
+# list aliases {{{
+
+alias l=flist
+alias ll=flistall
+
+flist(){
+    # set colour variable
+    ls -hl -1 --color=auto --group-directories-first | stylize
+}
+
+flistall(){
+    # set colour variable
+    ls -hAl -1 --color=auto --group-directories-first | stylize
+}
+
+stylize(){
+awk 'NR>1 {
+    printf "[38;5;255m"
+    if ( substr ($1, 0, 1)=="d" ) {
+        if ( substr ($9, 0, 1)=="." ) {
+            printf "[38;5;242m\t\t     "
+            printf substr($1,0,1)
+            printf substr($1,5,3)
+            printf "[38;5;25m "
+        } else {
+            printf "[38;5;255m\t\t     "
+            printf substr($1,0,1)
+            printf substr($1,5,3)
+            printf "[38;5;33m  "
+        }
+    } else {
+        if ( substr ($9, 0, 1)=="." ) {
+            printf "[38;5;242m"$6
+        printf "%3s %5s %7s %s%s",$7,$8,$5,substr($1,0,1),substr($1,5,3)" "
+            printf "[38;5;248m"
+        } else {
+            printf "[38;5;255m"$6
+        printf "%3s %5s %7s %s%s",$7,$8,$5,substr($1,0,1),substr($1,5,3)"  "
+        }
+        if ( substr ($1, 4, 1)=="x" ) {
+                printf "[38;5;10m"
+        }
+    }
+    for(i=9;i<=NF;++i) printf $i" "  
+    printf "\n"
+}'
+
+}
+
+#}}} 
+# changing directory {{{
+
+cdls(){cd $@ &&l;}
+
+alias cd=cdls
+
+#}}}
+# vlc {{{
+#alias vlc=cvlc
+# }}}
+alias config='/usr/bin/git --git-dir=/home/matthew/.cfg/ --work-tree=/home/matthew'
+
+# vim:foldmethod=marker:foldlevel=0:ft=zsh
