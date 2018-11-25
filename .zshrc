@@ -13,8 +13,8 @@ compinit
 # History {{{
 
 HISTFILE=$HOME/.history
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=1000000
+SAVEHIST=1000000
 # setopt BANG_HIST                
 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY         
@@ -47,15 +47,17 @@ setopt HIST_VERIFY
 source $HOME/.aliases
 
 # }}}
- # Prompt {{{
+  # Prompt {{{
 #autoload -Uz promptinit
 #promptinit
 
 # set inline editor to vim
 export EDITOR='vim'
-function precmd() {
-}
 
+#function precmd() {
+#}
+
+# change prompt colour if in editor mode
 function zle-line-init zle-keymap-select {
     VIMODE="${${KEYMAP/vicmd/[1;31m}/(main|viins)/[1;32m}"
     zle reset-prompt
